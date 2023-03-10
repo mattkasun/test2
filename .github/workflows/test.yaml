@@ -13,3 +13,10 @@ jobs:
           go-version: 1.17
       - name: run tests
         run : go run main.go
+  call-other:
+    needs: test
+    uses: github.com/mattkasun/test/.github/workflows/test.yaml@master
+    with:
+      version: v0.20.1
+    secrets: inherit
+    
