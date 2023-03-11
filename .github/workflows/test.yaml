@@ -1,5 +1,12 @@
 name: test
-on: workflow_dispatch
+
+on: 
+  workflow_dispatch:
+    inputs:
+      prerelease:
+        description: "is prerelease"
+        required: true
+        type: boolean
 
 jobs:
   test:
