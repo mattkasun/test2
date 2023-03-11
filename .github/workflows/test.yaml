@@ -18,5 +18,7 @@ jobs:
     uses: mattkasun/test/.github/workflows/test.yml@master
     with:
       version: v0.20.1
+      some_data: "hello world"
+      some_bool: true
     secrets: inherit
     
