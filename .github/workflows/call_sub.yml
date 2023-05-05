@@ -11,7 +11,7 @@ on:
 jobs:
 
   call-other:
-    uses: .github/workflows/sub/junk.yml
+    uses: .github/workflows/sub/junk.yml@main
     with:
       newversion: v0.20.1
       data: "hello world"
