@@ -1,0 +1,20 @@
+name: call_sub
+
+on: 
+  workflow_dispatch:
+    inputs:
+      prerelease:
+        description: "is prerelease"
+        required: true
+        type: boolean
+
+jobs:
+
+  call-other:
+    uses: .github/workflows/sub/junk.yml
+    with:
+      newversion: v0.20.1
+      data: "hello world"
+      update: true
+    secrets: inherit
+    
