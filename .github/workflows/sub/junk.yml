@@ -1,0 +1,31 @@
+name: sub workflow
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+        
+jobs:
+  echo:
+    name: echo parameters
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          repository: mattkasun/test
+          ref: master
+      - name: setup go
+        uses: actions/setup-go@v3
+        with:
+          go-verions: 1.19
+      - name: build
+        run: |
+          go build .
+      - name: run
+        run: |
+          ./test >> output
+          cat output
+          
