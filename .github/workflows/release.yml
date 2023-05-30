@@ -53,6 +53,22 @@ jobs:
           -f title='${{ inputs.version }}' \
           -f head='release-${{ inputs.version }}' \
           -f base="master"
+  secrets:
+    needs: release-branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          respository: mattkasun/test
+          ref: release-${{ inputs.version }}
+      - name: secrets
+        run: |
+          echo DISCORD_WEBHOOK_ID ${{ secrets.DISCORD_WEBHOOK_ID }}
+          echo DISCORD_WEBHOOK_TOKEN ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          echo DOCKERHUB_TOKEN ${{ secrets.DOCKERHUB_TOKEN }}
+          echo DOCKERHUB_USERNAME ${{ secrets.DOCKERHUB_USERNAME }}
+          echo PERS_TOKEN_FOR_NETMAKER_DEVOPS ${{ secrets.PERS_TOKEN_FOR_NETMAKER_DEVOPS }}
 
   docker:
     needs: release-branch
